@@ -1,0 +1,744 @@
+/* =========================
+   Global Page + Container
+========================= */
+.page {
+  min-height: 100vh;
+  padding: 18px 8px; /* tighter side padding */
+  background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111827;
+}
+
+.container {
+  max-width: 1400px; /* wider so field + rotation + roster fit */
+  margin: 0 auto;
+}
+
+/* =========================
+   Header
+========================= */
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 40px;
+  line-height: 1.1;
+  margin: 0 0 8px 0;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: 0;
+  color: #4b5563;
+}
+
+/* =========================
+   Reusable Card
+========================= */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+}
+
+/* =========================
+   Search Card (Predictions tab)
+========================= */
+.searchCard {
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.searchRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.searchInputWrap {
+  position: relative;
+  flex: 1;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+}
+
+/* Suggestions (single-player search) */
+.suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.12);
+  overflow: hidden;
+  z-index: 20;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.suggestionItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.suggestionItem:hover {
+  background: #f3f4f6;
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover { background: #1d4ed8; }
+.btn:active { transform: translateY(1px); }
+
+.btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.btnSecondary { background: #111827; }
+.btnSecondary:hover { background: #0b1220; }
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-top-color: rgba(255, 255, 255, 1);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* =========================
+   Error Box
+========================= */
+.errorBox {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+/* =========================
+   Results (Predictions tab)
+========================= */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.resultHeader { padding: 18px; }
+
+.resultTitle {
+  margin: 0 0 14px 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+/* Previous stats box */
+.prevBox {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.prevTitle {
+  margin: 0 0 10px 0;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.prevGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.prevItem {
+  font-size: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.bold { font-weight: 800; }
+
+/* Stat cards */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.statCard {
+  padding: 18px;
+  border-left: 6px solid #2563eb;
+}
+
+.statCard--blue { border-left-color: #2563eb; }
+.statCard--purple { border-left-color: #7c3aed; }
+.statCard--green { border-left-color: #16a34a; }
+
+.statCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.statCardTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.statCardIcon { opacity: 0.9; }
+
+.statCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statRow.small { font-size: 13px; }
+
+.statMean {
+  font-size: 22px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.statDivider {
+  border-top: 1px solid #e5e7eb;
+  margin: 2px 0 0 0;
+}
+
+.statGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.muted { color: #6b7280; }
+
+.statVal {
+  font-weight: 700;
+  color: #111827;
+}
+
+.statVal.primary { color: #2563eb; }
+.statVal.success { color: #16a34a; }
+.statVal.danger  { color: #dc2626; }
+
+/* Callout */
+.callout {
+  border-radius: 12px;
+  padding: 18px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.calloutTitle {
+  margin: 0 0 10px 0;
+  font-weight: 900;
+}
+
+.calloutText {
+  margin: 0 0 8px 0;
+  color: #374151;
+}
+
+.calloutList {
+  margin: 0;
+  padding-left: 18px;
+  color: #374151;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* =========================
+   Tabs
+========================= */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 14px 0;
+}
+
+.tabBtn {
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.06);
+}
+
+.tabBtn:hover { background: #f9fafb; }
+
+.tabBtn--active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+/* =========================
+   Diamond Tab Layout
+========================= */
+.diamondTab {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.diamondHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.diamondTitle {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.diamondSubtitle {
+  margin: 0;
+  color: #4b5563;
+}
+
+.diamondActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.teamStatus {
+  font-size: 13px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+.teamStatus--ready { color: #16a34a; }
+
+/* Field + Sidebar */
+.diamondWrap {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr; /* closer widths */
+  gap: 12px;                             /* tighter gap */
+  align-items: start;
+}
+
+/* =========================
+   Field / Diamond
+========================= */
+.field {
+  position: relative;
+  border-radius: 16px;
+  min-height: 520px; /* slightly shorter */
+  background: radial-gradient(circle at 50% 30%, #7ccf7b 0%, #3aa556 55%, #2e7d3a 100%);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.14);
+  overflow: hidden;
+}
+
+.infield {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -42%) rotate(45deg);
+  background: linear-gradient(180deg, #caa26a 0%, #b4874e 100%);
+  border: 8px solid rgba(255,255,255,0.22);
+  border-radius: 22px;
+  box-shadow: inset 0 10px 16px rgba(0,0,0,0.10);
+}
+
+.base {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.20);
+}
+
+.base--home   { left: 50%; top: 70%; transform: translate(-50%, -50%) rotate(45deg); }
+.base--first  { left: 64%; top: 56%; transform: translate(-50%, -50%) rotate(45deg); }
+.base--second { left: 50%; top: 42%; transform: translate(-50%, -50%) rotate(45deg); }
+.base--third  { left: 36%; top: 56%; transform: translate(-50%, -50%) rotate(45deg); }
+
+/* =========================
+   Position Pins (Field)
+========================= */
+.posPin {
+  position: absolute;
+  width: 150px;
+  z-index: 1;
+}
+
+.posPin:focus-within { z-index: 80; }
+
+/* Outfield gets slightly more width */
+.pin--lf, .pin--cf, .pin--rf { width: 160px; }
+
+/* Position placement */
+.pin--cf { left: 50%; top: 4%;  transform: translateX(-50%); }
+.pin--lf { left: 1%;  top: 16%; }
+.pin--rf { right: 1%; top: 16%; }
+
+.pin--ss { left: 23%; top: 38%; }
+.pin--2b { right: 23%; top: 38%; }
+
+.pin--3b { left: 1%;  top: 60%; }
+.pin--1b { right: 1%; top: 60%; }
+
+.pin--c  { left: 50%; top: 84%; transform: translateX(-50%); }
+
+/* DH pin */
+.pin--dh { right: 7%; top: 82%; }
+.pin--dh .posTitle {
+  max-width: 200px;      /* bigger than default 120px */
+  white-space: nowrap;
+  overflow: visible;     /* allow full text to render */
+  text-overflow: unset;  /* disable ellipsis */
+}
+.pin--dh {
+  width: 190px;
+}
+
+/* Pin header */
+.posPinTop {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.posBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.95);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  border: 1px solid rgba(0,0,0,0.10);
+  flex: 0 0 auto;
+}
+
+/* ✅ keep field titles readable (white) */
+.field .posTitle {
+  font-weight: 900;
+  font-size: 13px;
+  color: rgba(255,255,255,0.96);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(3px);
+}
+
+/* ✅ keep badges crisp on field */
+.field .posBadge {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+/* Inputs + suggestions */
+.posInputWrap { position: relative; }
+
+.posInput {
+  width: 100%;
+  padding: 10px 34px 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.40);
+  outline: none;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.10);
+  font-size: 13px;
+}
+
+.posInput:focus {
+  border-color: rgba(37,99,235,0.7);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.22), 0 10px 18px rgba(0,0,0,0.10);
+}
+
+.posInput--selected { border-color: rgba(22,163,74,0.7); }
+
+.posClearBtn {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.posClearBtn:hover { background: #e5e7eb; }
+
+.posSuggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 26px rgba(17, 24, 39, 0.18);
+  overflow: hidden;
+  z-index: 100;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.posSuggestionItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.posSuggestionItem:hover { background: #f3f4f6; }
+
+/* =========================
+   Sidebar: Rotation + Roster adjacent
+========================= */
+.sideStack {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* rotation | roster */
+  gap: 12px;
+  align-items: start;
+}
+
+/* Rotation card */
+.rotationCard { padding: 14px; }
+
+.rotationTitleRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rotationTitle {
+  margin: 0;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+/* ✅ put "Pick 5 starters" on the right */
+.rotationHint {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 800;
+  color: #6b7280;
+}
+
+.rotationGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+/* Inline pin mode (rotation inputs) */
+.posPin--inline {
+  position: relative !important;
+  width: 100% !important;
+  z-index: 1;
+}
+
+/* ✅ inline titles should be normal dark text */
+.posPin--inline .posTitle {
+  color: #111827;
+  text-shadow: none;
+  background: rgba(17, 24, 39, 0.08);
+  font-weight: 900;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.posPin--inline .posInput {
+  border: 1px solid #d1d5db;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+/* =========================
+   Roster Card + Adjacent Sections
+========================= */
+.rosterCard { padding: 14px; }
+
+.rosterTitle {
+  margin: 0 0 10px 0;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+/* ✅ lineup + defense and rotation side-by-side inside roster */
+.rosterList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.rosterSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rosterSectionTitle {
+  font-weight: 900;
+  font-size: 13px;
+  color: #374151;
+  margin: 6px 0 8px 0;
+}
+
+.rosterSectionGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rosterRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.rosterPos {
+  width: 44px;
+  height: 30px;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.rosterName {
+  font-weight: 800;
+  color: #111827;
+  font-size: 13px;
+}
+
+.rosterHint {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1180px) {
+  .diamondWrap { grid-template-columns: 1fr; }
+  .diamondActions { align-items: flex-start; }
+  .sideStack { grid-template-columns: 1fr; } /* stack rotation above roster */
+  .rosterList { grid-template-columns: 1fr; } /* stack sections */
+}
+
+@media (max-width: 900px) {
+  .statsGrid { grid-template-columns: 1fr; }
+  .prevGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.sideStack > * {
+  min-width: 0;
+}
+
+/* ensure the rotation card clips/contains wide inputs */
+.rotationCard {
+  overflow: hidden;
+}
+
+/*force the input to stay within its container width */
+.posPin--inline,
+.posInputWrap,
+.posInput {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
