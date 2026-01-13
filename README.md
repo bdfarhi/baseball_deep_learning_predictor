@@ -24,13 +24,13 @@ A full-stack web app for MLB player projections and roster building.
   - [Run Both Together](#run-both-together)
 - [Model Artifacts](#model-artifacts)
   - [Hitter DDPM](#hitter-ddpm)
-  - [Pitcher Quantile GBM (Optional)](#pitcher-quantile-gbm-optional)
+  - [Pitcher Quantile GBM ](#pitcher-quantile-gbm-optional)
 - [API Documentation](#api-documentation)
   - [Health](#health)
   - [Hitter Projection](#hitter-projection)
   - [Player Search (Autocomplete)](#player-search-autocomplete)
-  - [Pitcher Projection (Optional)](#pitcher-projection-optional)
-  - [Pitcher Search (Optional)](#pitcher-search-optional)
+  - [Pitcher Projection](#pitcher-projection-optional)
+  - [Pitcher Search](#pitcher-search-optional)
 - [Troubleshooting](#troubleshooting)
 - [Roadmap](#roadmap)
 
@@ -193,7 +193,7 @@ The hitter predictor (`backend/predictor.py`) loads:
 It simulates many seasons per player and returns distribution summaries:
 - mean, p10, p25, p50, p75, p90 for OBP / SLG / OPS
 
-### Pitcher Quantile GBM (Optional)
+### Pitcher Quantile GBM 
 If enabled, the pitcher feature trains and saves quantile models:
 - `pitch_gbm_logRA9_next_q10.joblib`, `q50`, `q90`
 - `pitch_gbm_FIP_next_q10.joblib`, `q50`, `q90`
@@ -240,10 +240,10 @@ Response:
 { "results": ["Francisco Lindor", "Bo Bichette", "..."] }
 ```
 
-Eligibility filter (recommended):
+Eligibility filter :
 - Only include “full-time” hitters using a single threshold such as `MIN_PA_FULLTIME` from the most recent season.
 
-### Pitcher Projection (Optional)
+### Pitcher Projection 
 **POST** `/api/pitcher/predict`
 
 Request body:
@@ -251,7 +251,7 @@ Request body:
 { "name": "Gerrit Cole" }
 ```
 
-### Pitcher Search (Optional)
+### Pitcher Search 
 **GET** `/api/pitchers/search?q=<query>`
 
 Response:
