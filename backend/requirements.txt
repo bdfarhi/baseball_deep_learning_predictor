@@ -1,8 +1,9 @@
 flask==3.0.0
 flask-cors==4.0.0
-torch
 numpy
 gunicorn
 pandas
 scikit-learn==1.5.2
 joblib==1.4.2
+--index-url https://download.pytorch.org/whl/cpu
+torch
