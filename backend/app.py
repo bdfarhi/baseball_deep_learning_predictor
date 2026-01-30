@@ -8,7 +8,7 @@ from data_processing import compute_season_obp_slg, get_age_of_players
 from pitcher_gbm_predictor import PitcherGBMPredictor
 from pitch_processing import compute_season_pitching, add_age
 from team_wins_predictor import TeamWinsPredictor
-from threading import Lock
+from threading import Lock, Thread
 from pathlib import Path
 import os
 
@@ -21,19 +21,21 @@ MODELS_DIR = BASE_DIR / ".." / "models"
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": os.getenv("FRONTEND_ORIGIN", "*")}})
-
 _init_lock = Lock()
 _initialized = False
 
-@app.before_request
-def _ensure_initialized():
+def _init_async():
     global _initialized
-    if _initialized:
-        return
     with _init_lock:
         if not _initialized:
             initialize_predictor()
             _initialized = True
+
+@app.before_request
+def ensure_init():
+    global _initialized
+    if not _initialized:
+        Thread(target=_init_async, daemon=True).start()
 
 # -------- Globals used by routes --------
 predictor = None
