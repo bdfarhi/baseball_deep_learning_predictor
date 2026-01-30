@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import TeamPositionPin from "../components/TeamPositionPin";
 import RosterCard from "../components/RosterCard";
-import WinsCard from "../components/WinsCard";
+// import WinsCard from "../components/WinsCard";
 import TeamWins from "../components/WinsCard";
 import WinsInline from "../components/WinsInline";
 
 
 import { fetchTeamWins } from "../api/teamWins";
 import { fetchPitchers } from "../api/pitchers";
+
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
 
 const HITTER_KEYS = ["C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "DH"];
 const STARTER_KEYS = ["SP1", "SP2", "SP3", "SP4", "SP5"];
@@ -42,7 +45,7 @@ const ROTATION = [
 
 async function fetchPlayers(q) {
   const res = await fetch(
-    `http://localhost:5000/api/players?q=${encodeURIComponent(q)}`
+    `${API_BASE}/api/players?q=${encodeURIComponent(q)}`
   );
   if (!res.ok) return [];
   return await res.json(); // [{playerID, fullName}]

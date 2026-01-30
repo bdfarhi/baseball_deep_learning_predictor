@@ -4,19 +4,29 @@ import { Search, TrendingUp, Award, AlertCircle } from "lucide-react";
 import PlayerSearch from "../components/PlayerSearch";
 import StatCard from "../components/StatCard";
 
-async function getPrediction(name) {
-  const res = await fetch("http://localhost:5000/api/predict", {
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+export async function getPrediction(name) {
+  const res = await fetch(`${API_BASE}/api/predict`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name }),
   });
 
-  if (!res.ok) {
-    const err = await res.json();
-    throw new Error(err.error || "Failed to get prediction");
+  let data;
+  try {
+    data = await res.json();
+  } catch {
+    data = null;
   }
 
-  return await res.json();
+  if (!res.ok) {
+    const msg =
+      (data && data.error) || `Failed to get prediction (HTTP ${res.status})`;
+    throw new Error(msg);
+  }
+
+  return data;
 }
 
 export default function PredictionsPage() {
